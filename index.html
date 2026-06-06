@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bull SMP | Official Server Website</title>
+    <style>
+        /* Minecraft-Inspired Custom Properties */
+        :root {
+            --mc-dark-gray: #1E1E1E;
+            --mc-dirt: #2A1E17;
+            --mc-green: #5b8731;
+            --mc-gold: #FDB813;
+            --mc-text-light: #E0E0E0;
+            --mc-panel-bg: rgba(30, 30, 30, 0.85);
+            --mc-border: #4A4A4A;
+        }
+
+        /* Global Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1627856013091-fed6e4e30025?q=80&w=1920') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--mc-text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        header {
+            background-color: rgba(16, 16, 16, 0.95);
+            border-bottom: 4px solid var(--mc-green);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--mc-gold);
+            text-shadow: 2px 2px #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--mc-text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: var(--mc-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(26,26,26,1));
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 3px 3px 0px #000, 5px 5px 0px var(--mc-green);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .cta-btn {
+            background-color: var(--mc-green);
+            color: white;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-bottom: 4px solid #3d5b21;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: #6da13b;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn:active {
+            transform: translateY(2px);
+            border-bottom-width: 1px;
+        }
+
+        /* Main Content Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Content Blocks/Cards */
+        .card {
+            background-color: var(--mc-panel-bg);
+            border: 3px solid var(--mc-border);
+            border-radius: 4px;
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--mc-gold);
+        }
+
+        .card h2 {
+            color: var(--mc-gold);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--mc-green);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px #000;
+        }
+
+        /* Server Info Details */
+        .info-group {
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        .info-value {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #111;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 5px;
+            border: 1px solid #333;
+            width: 100%;
+        }
+
+        /* Coordinates Badge */
+        .coord-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .coord {
+            flex: 1;
+            text-align: center;
+            background-color: #222;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #444;
+        }
+
+        .coord span {
+            display: block;
+            font-size: 11px;
+            color: var(--mc-gold);
+        }
+
+        .coord strong {
+            font-size: 18px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Staff Hierarchy Custom Styling */
+        .staff-member {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-left: 4px solid var(--mc-gold);
+            margin-bottom: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .staff-member.owner {
+            border-left-color: #ff5555;
+        }
+
+        .staff-member.vice {
+            border-left-color: #ffaa00;
+        }
+
+        .staff-role {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .staff-role.owner-text { color: #ff5555; }
+        .staff-role.vice-text { color: #ffaa00; }
+
+        .staff-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Rules List */
+        .rules-list {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+
+        .rules-list li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        .rules-list strong {
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #101010;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            border-top: 4px solid var(--mc-border);
+            font-size: 14px;
+            color: #666;
+        }
+
+        footer a {
+            color: var(--mc-gold);
+            text-decoration: none;
+        }
+
+        /* Responsive UI Adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🐂 Bull SMP</div>
+        <ul class="nav-links">
+            <li><a href="#connect">Connect</a></li>
+            <li><a href="#landmarks">Landmarks</a></li>
+            <li><a href="#staff">Staff</a></li>
+        </ul>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to Bull SMP</h1>
+        <p>Survival, Community, and Vanilla adventures at its finest. Join our world today and build your legacy!</p>
+        <button class="cta-btn" onclick="document.getElementById('connect').scrollIntoView({behavior: 'smooth'});">Join Server</button>
+    </section>
+
+    <main class="container">
+
+        <section class="card" id="connect">
+            <h2>Server Connection</h2>
+            <p style="margin-bottom: 15px; color: #aaa;">Input these credentials into your Minecraft client launcher to log in.</p>
+            
+            <div class="info-group">
+                <span class="info-label">Server IP / Address</span>
+                <span class="info-value">Bull_SMP.aternos.me</span>
+            </div>
+
+            <div class="info-group">
+                <span class="info-label">Port</span>
+                <span class="info-value">29512</span>
+            </div>
+            
+            <p style="font-size: 12px; color: #666; margin-top: 15px; text-align: center;">Hosted securely via Aternos</p>
+        </section>
+
+        <section class="card" id="landmarks">
+            <h2>Important Locations</h2>
+            <p style="margin-bottom: 15px; color: #aaa;">Crucial navigation vectors within our shared survival ecosystem.</p>
+            
+            <div class="info-group">
+                <span class="info-label" style="color: var(--mc-gold);">Official Society Coordinates</span>
+                <div class="coord-box">
+                    <div class="coord"><span>X</span><strong>-222</strong></div>
+                    <div class="coord"><span>Y</span><strong>67</strong></div>
+                    <div class="coord"><span>Z</span><strong>-444</strong></div>
+                </div>
+            </div>
+            
+            <p style="font-size: 13px; color: #bbb; margin-top: 15px;">
+                📍 Mark this location down! It serves as the primary base camp and foundational hub for the society members.
+            </p>
+        </section>
+
+        <section class="card" id="staff">
+            <h2>Server Management</h2>
+            <p style="margin-bottom: 15px; color: #aaa;">Reach out to leadership staff if you face technical issues or griefing.</p>
+            
+            <div class="staff-member owner">
+                <div class="staff-role owner-text">Server Owner</div>
+                <div class="staff-name">DHIRAJDON110</div>
+            </div>
+
+            <div class="staff-member vice">
+                <div class="staff-role vice-text">Vice Owner</div>
+                <div class="staff-name">R2XGAMERZM</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Server Charter</h2>
+            <ul class="rules-list">
+                <li><strong>No Griefing:</strong> Respect builds, chests, and infrastructure.</li>
+                <li><strong>Fair Play:</strong> Exploits, X-Rays, or hacked clients result in a ban.</li>
+                <li><strong>Community First:</strong> Assist teammates at the main society coordinates.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Bull SMP. All Rights Reserved. This site is not affiliated with Mojang Studios.</p>
+    </footer>
+
+</body>
+</html>
